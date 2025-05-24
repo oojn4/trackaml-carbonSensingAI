@@ -14,6 +14,18 @@ const app = defineConfig({
   },
   vite: {
     plugins: [tsconfigPaths() as never, tailwindcss() as never],
+    // Set base path untuk GitHub Pages
+    base: process.env.NODE_ENV === 'production' ? '/trackaml-carbonSensingAI/' : '/',
+    build: {
+      // Pastikan assets menggunakan relative paths
+      assetsDir: 'assets',
+      rollupOptions: {
+        output: {
+          // Pastikan chunk names konsisten
+          manualChunks: undefined,
+        },
+      },
+    },
   },
   tsr: {
     generatedRouteTree: "./app/route-tree.gen.ts",

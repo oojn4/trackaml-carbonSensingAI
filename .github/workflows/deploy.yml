@@ -35,7 +35,9 @@ jobs:
         run: bun install 
 
       - name: Build with TanStack Start
-        run: bun run build
+        run: |
+          export NODE_ENV=production
+          bun run build
 
       - name: List build output (debug)
         run: |
@@ -45,15 +47,14 @@ jobs:
           ls -la .output/ || echo "No .output directory"
           echo "Contents of .output/public:"
           ls -la .output/public/ || echo "No .output/public directory"
-          echo "Contents of dist:"
-          ls -la dist/ || echo "No dist directory"
-          echo "Contents of build:"
-          ls -la build/ || echo "No build directory"
+          echo "Contents of _build:"
+          ls -la _build/ || echo "No _build directory"
+          find . -name "*.html" -o -name "*.js" -o -name "*.css" | head -20
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # TanStack Start with github-pages preset typically outputs to .output/public
+          # Sesuaikan dengan output directory yang sebenarnya
           path: ./.output/public
 
   # Deployment job
