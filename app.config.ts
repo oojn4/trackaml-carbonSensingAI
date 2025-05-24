@@ -13,7 +13,6 @@ const app = defineConfig({
     },
   },
   vite: {
-    base: process.env.VITE_BASE_URL || '/',
     plugins: [tsconfigPaths() as never, tailwindcss() as never],
   },
   tsr: {

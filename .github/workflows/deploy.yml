@@ -36,9 +36,6 @@ jobs:
 
       - name: Build with TanStack Start
         run: bun run build
-        env:
-          NODE_ENV: production
-          VITE_BASE_URL: /trackaml-carbonSensingAI/
 
       - name: Create .nojekyll file
         run: touch .output/public/.nojekyll
