@@ -3,17 +3,22 @@ import { defineConfig } from "@tanstack/react-start/config";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 const app = defineConfig({
+  // Add base URL for GitHub Pages (replace 'your-repo-name' with your actual repo name)
+  vite: {
+    base: process.env.NODE_ENV === 'production' ? '/trackaml-carbonSensingAI/' : '/',
+    plugins: [tsconfigPaths() as never, tailwindcss() as never],
+  },
   server: {
-    preset: "github-pages",
+    // Try cloudflare-pages-static instead of github-pages
+    preset: "cloudflare-pages-static",
+    // Alternative: try "static" preset
+    // preset: "static",
     minify: true,
     static: true,
     prerender: {
       routes: ["/"],
       crawlLinks: true,
     },
-  },
-  vite: {
-    plugins: [tsconfigPaths() as never, tailwindcss() as never],
   },
   tsr: {
     generatedRouteTree: "./app/route-tree.gen.ts",
