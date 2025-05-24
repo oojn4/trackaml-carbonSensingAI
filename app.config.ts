@@ -14,9 +14,16 @@ const app = defineConfig({
   },
   vite: {
     plugins: [tsconfigPaths() as never, tailwindcss() as never],
-    base: '/trackaml-carbonSensingAI/',
+    // base: "/trackaml-carbonSensingAI/",
     build: {
-      assetsDir: "assets",
+      outDir: "dist",
+      assetsDir: "_build/assets",
+      sourcemap: false,
+      rollupOptions: {
+        output: {
+          manualChunks: undefined,
+        },
+      },
     },
   },
   tsr: {
