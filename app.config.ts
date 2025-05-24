@@ -4,26 +4,18 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 const app = defineConfig({
   server: {
-    // Gunakan preset node-server untuk compatibility yang lebih baik
-    preset: "node-server",
+    // Gunakan preset yang proven untuk static sites
+    preset: "github-pages",
     minify: true,
+    static: true,
     prerender: {
       routes: ["/"],
       crawlLinks: true,
     },
-    // Tambahkan konfigurasi untuk static generation
-    static: true,
   },
   vite: {
     plugins: [tsconfigPaths() as never, tailwindcss() as never],
     base: "/trackaml-carbonSensingAI/",
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks: undefined, // Disable manual chunking untuk static builds
-        },
-      },
-    },
   },
   tsr: {
     generatedRouteTree: "./app/route-tree.gen.ts",
