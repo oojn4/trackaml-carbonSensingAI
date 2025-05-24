@@ -32,20 +32,13 @@ jobs:
           bun-version: '1.2.10'
 
       - name: Install dependencies
-        run: bun install 
+        run: bun install
 
       # - name: Lint code
-      #   run: bun run lint || echo "Linting completed with warnings"
+      #   run: bun run lint
 
       - name: Build with TanStack Start
         run: bun run build
-
-      - name: List build output (debug)
-        run: |
-          echo "Contents of .output:"
-          find .output -type f -name "*.html" -o -name "*.js" -o -name "*.css" | head -20
-          echo "Directory structure:"
-          ls -la .output/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
