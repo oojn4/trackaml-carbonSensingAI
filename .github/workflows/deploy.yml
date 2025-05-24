@@ -34,25 +34,27 @@ jobs:
       - name: Install dependencies
         run: bun install 
 
-      # - name: Lint code
-      #   run: bun run lint || echo "Linting completed with warnings"
-
       - name: Build with TanStack Start
         run: bun run build
 
       - name: List build output (debug)
         run: |
+          echo "Contents of root directory:"
+          ls -la
           echo "Contents of .output:"
           ls -la .output/ || echo "No .output directory"
+          echo "Contents of .output/public:"
+          ls -la .output/public/ || echo "No .output/public directory"
           echo "Contents of dist:"
           ls -la dist/ || echo "No dist directory"
-          echo "Contents of current directory:"
-          ls -la
+          echo "Contents of build:"
+          ls -la build/ || echo "No build directory"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          # TanStack Start with github-pages preset typically outputs to .output/public
+          path: ./.output/public
 
   # Deployment job
   deploy:
