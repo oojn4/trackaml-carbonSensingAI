@@ -43,16 +43,14 @@ jobs:
       - name: List build output (debug)
         run: |
           echo "Contents of .output:"
-          ls -la .output/ || echo "No .output directory"
-          echo "Contents of dist:"
-          ls -la dist/ || echo "No dist directory"
-          echo "Contents of current directory:"
-          ls -la
+          find .output -type f -name "*.html" -o -name "*.js" -o -name "*.css" | head -20
+          echo "Directory structure:"
+          ls -la .output/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./.output/public
 
   # Deployment job
   deploy:

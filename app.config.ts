@@ -4,7 +4,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 const app = defineConfig({
   server: {
-    preset: "static",
+    preset: "vercel",
     minify: true,
     static: true,
     prerender: {
@@ -14,17 +14,7 @@ const app = defineConfig({
   },
   vite: {
     plugins: [tsconfigPaths() as never, tailwindcss() as never],
-    // base: "/trackaml-carbonSensingAI/",
-    build: {
-      outDir: "dist",
-      assetsDir: "_build/assets",
-      sourcemap: false,
-      rollupOptions: {
-        output: {
-          manualChunks: undefined,
-        },
-      },
-    },
+    base: "/trackaml-carbonSensingAI/",
   },
   tsr: {
     generatedRouteTree: "./app/route-tree.gen.ts",
