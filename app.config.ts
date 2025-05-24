@@ -1,6 +1,6 @@
 import tailwindcss from "@tailwindcss/vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "@tanstack/react-start/config";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const app = defineConfig({
   server: {
@@ -11,19 +11,12 @@ const app = defineConfig({
       routes: ["/"],
       crawlLinks: true,
     },
-    // Ganti dengan nama repository Anda
-    base: "/trackaml-carbonSensingAI/",
   },
   vite: {
     plugins: [tsconfigPaths() as never, tailwindcss() as never],
-    // Konfigurasi build untuk GitHub Pages
+    base: '/trackaml-carbonSensingAI/',
     build: {
       assetsDir: "assets",
-      rollupOptions: {
-        output: {
-          manualChunks: undefined,
-        },
-      },
     },
   },
   tsr: {
