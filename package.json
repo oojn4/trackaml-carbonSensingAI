@@ -4,14 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "packageManager": "bun@1.2.10",
-    "scripts": {
-    "dev": "vinxi dev",
-    "build": "vinxi build",
-    "build:static": "NODE_ENV=production vinxi build --preset=static --minify",
-    "build:github": "NODE_ENV=production vinxi build --preset=vercel --static",
-    "start": "vinxi start",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+  "scripts": {
+    "lint": "biome check --fix .",
+    "dev": "bun --bunx vinxi dev",
+    "build": "bun --bunx vinxi build"
   },
   "dependencies": {
     "@deck.gl/core": "^9.1.11",

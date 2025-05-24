@@ -4,7 +4,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 const app = defineConfig({
   server: {
-    // Gunakan preset yang proven untuk static sites
     preset: "github-pages",
     minify: true,
     static: true,
@@ -15,7 +14,6 @@ const app = defineConfig({
   },
   vite: {
     plugins: [tsconfigPaths() as never, tailwindcss() as never],
-    base: "/trackaml-carbonSensingAI/",
   },
   tsr: {
     generatedRouteTree: "./app/route-tree.gen.ts",
