@@ -31,25 +31,6 @@ jobs:
         with:
           bun-version: '1.2.10'
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (default: true).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: other
-
-      - name: Restore cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.bun/install/cache
-            node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
-
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
