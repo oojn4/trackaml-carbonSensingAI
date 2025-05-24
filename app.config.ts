@@ -4,9 +4,8 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 const app = defineConfig({
   server: {
-    preset: "github-pages",
+    preset: "static",
     minify: true,
-    static: true,
     prerender: {
       routes: ["/"],
       crawlLinks: true,
@@ -14,18 +13,23 @@ const app = defineConfig({
   },
   vite: {
     plugins: [tsconfigPaths() as never, tailwindcss() as never],
-    // Set base path untuk GitHub Pages
-    base: process.env.NODE_ENV === 'production' ? '/trackaml-carbonSensingAI/' : '/',
+    // PENTING: Base path harus sesuai dengan nama repository
+    base: "/trackaml-carbonSensingAI/",
     build: {
-      // Pastikan assets menggunakan relative paths
-      assetsDir: 'assets',
+      outDir: "dist",
+      assetsDir: "assets",
+      emptyOutDir: true,
+      // Pastikan semua assets menggunakan relative path
       rollupOptions: {
         output: {
-          // Pastikan chunk names konsisten
-          manualChunks: undefined,
-        },
-      },
+          assetFileNames: 'assets/[name]-[hash][extname]',
+          chunkFileNames: 'assets/[name]-[hash].js',
+          entryFileNames: 'assets/[name]-[hash].js'
+        }
+      }
     },
+    // Pastikan public assets juga menggunakan base path yang benar
+    publicDir: 'public'
   },
   tsr: {
     generatedRouteTree: "./app/route-tree.gen.ts",

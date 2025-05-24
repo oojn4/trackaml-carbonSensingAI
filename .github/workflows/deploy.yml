@@ -39,6 +39,12 @@ jobs:
           export NODE_ENV=production
           bun run build
 
+      - name: Fix GitHub Pages paths
+        run: |
+          # Buat .nojekyll file
+          touch dist/.nojekyll
+          echo "Created .nojekyll file"
+
       - name: List build output (debug)
         run: |
           echo "Contents of root directory:"
@@ -54,8 +60,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Sesuaikan dengan output directory yang sebenarnya
-          path: ./.output/public
+          path: ./dist
 
   # Deployment job
   deploy:
