@@ -37,7 +37,11 @@ jobs:
       - name: Build with TanStack Start
         run: |
           export NODE_ENV=production
-          bun run build
+          # Coba build untuk GitHub Pages
+          bun run build:github || bun run build || {
+            echo "All build methods failed, checking alternatives..."
+            exit 1
+          }
 
       - name: Fix GitHub Pages paths
         run: |

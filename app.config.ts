@@ -4,32 +4,26 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 const app = defineConfig({
   server: {
-    preset: "static",
+    // Gunakan preset node-server untuk compatibility yang lebih baik
+    preset: "node-server",
     minify: true,
     prerender: {
       routes: ["/"],
       crawlLinks: true,
     },
+    // Tambahkan konfigurasi untuk static generation
+    static: true,
   },
   vite: {
     plugins: [tsconfigPaths() as never, tailwindcss() as never],
-    // PENTING: Base path harus sesuai dengan nama repository
     base: "/trackaml-carbonSensingAI/",
     build: {
-      outDir: "dist",
-      assetsDir: "assets",
-      emptyOutDir: true,
-      // Pastikan semua assets menggunakan relative path
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/[name]-[hash][extname]',
-          chunkFileNames: 'assets/[name]-[hash].js',
-          entryFileNames: 'assets/[name]-[hash].js'
-        }
-      }
+          manualChunks: undefined, // Disable manual chunking untuk static builds
+        },
+      },
     },
-    // Pastikan public assets juga menggunakan base path yang benar
-    publicDir: 'public'
   },
   tsr: {
     generatedRouteTree: "./app/route-tree.gen.ts",
