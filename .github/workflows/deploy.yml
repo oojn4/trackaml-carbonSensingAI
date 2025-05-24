@@ -37,6 +37,9 @@ jobs:
       - name: Build with TanStack Start
         run: bun run build
 
+      - name: Create .nojekyll file
+        run: touch .output/public/.nojekyll
+
       - name: List build output (debug)
         run: |
           echo "Contents of root directory:"
