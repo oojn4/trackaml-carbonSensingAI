@@ -8,7 +8,7 @@ const app = defineConfig({
     minify: true,
     static: true,
     prerender: {
-      routes: ["/trackaml-carbonSensingAI/"],
+      routes: ["/"],
       crawlLinks: true,
     },
   },
